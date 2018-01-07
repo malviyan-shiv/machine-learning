@@ -1,2 +1,2 @@
 # machine-learning
-journey of machine learning 
+My journey of machine learning 
