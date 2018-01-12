@@ -1,0 +1,58 @@
+Classification Problem and its Representation
+
+-> We change the representation of the hypothesis function as the new concept only takes the values between zero and one. We use the sigmoid function defined as:
+        h(x) = g(theta'*x)
+        z = theta'*x
+        g(z) = i/(1+e^(-z))
+The value will give us the probability of the output being one.
+
+-> For getting the decision boundary we translate the output as:
+        h(x) >= 0.5 -> = 1
+        h(x) <  0.5 -> = 0
+In terms of our logistic function:
+        g(z) >= 0.5
+        when z >= 0
+The decision boundary is the line that seperates the area with y=0 and y=1. It is created by our hypothesis function.
+The decision boundary needs not to be a straight line as z can be a function that describes a circle or any shape to fit our data.
+        z = theta0 + theta1*x1^2 + theta2*x2^2
+
+-> We cannot use the same cost function as Logistic function will cause output to be wavy, causing many local optima.
+        J(theta) = -log(h(x))     if y == 1
+                   -log(1-h(x))   if y == 0
+Writing the cost function in this way guarantees that J(theta) is convex for Logistic regression.
+
+-> We can compress the cost function -
+        Cost(h(x), y) = -y*log(h(x)) -(1-y)*log(1-h(x))
+Gradient Descent:
+        Repeat{
+        thetaj:=thetaj - (a/m)*summation(h(x)-y)xj
+        }
+A vectorized implementation:
+        theta:=theta-(a/m)*X'*(g(X*theta)-Y)
+
+Advanced Optimization
+???????
+
+
+Multiclass Classification: One-vs-all
+-> For multiclass classification we divide the problem in two set one for each class and find the probability of its occurence being in one of the class and then take the class with the max value.
+
+
+Solving the problem of Overfitting
+-> Uderfitting, or high bias, is when the form of our hypothesis function h maps poorly to the trend of the data.It is usually caused by a function that is too simple or uses too few features.
+-> Overfitting, or high variance, is caused by a hypothesis function that fits the available data but does not generalize well to predict new data.It is usually caused by a complicated function that creates a lot of unnecessary curves and angles unrelated to the data.
+-> There are two main options to address the issue of overfitting:
+    1) Reduce the number of features - either by manually selecting the features to keep or by using model selection algorithm
+    2) Regularization - Keep all the features, but reduce the magnitude of parameters thetaj.It works well when we have a lot of slightly useful features.
+-> If we have overfitting from our hypothesis function, we can reduce the weight that some of the terms in our function carry by increasing their cost.
+-> Increasing the too much can result in underfitting.
+
+-> Updating the gradient descent function:
+          Repeat{
+          theta0:= theta0 -(a/m)*(summation(h(x)-y)x)
+          thetaj:=thetaj-a*[(1/m)*(summation(h(x)-y)x) + (lambda/m)*thetaj]
+          }
+          The above can be written as :
+          thetaj:=thetaj(1-a*(lambda/m)) - a/m(summation(h(x)-y)x)
+   Equation in the normal form:
+          theta = (X'X+lambda.L)^(-1)y where L is a identity matrix with 0,0 as 0

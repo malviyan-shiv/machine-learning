@@ -1,0 +1,22 @@
+Neural Networks
+
+-> Origins: Algorithms that try to mimic the brain
+-> Was very widely used in 80s and early 90s: popularity diminished in late 90s.
+-> Recent resurgence: State-of-the-art technique for many applications
+-> Experiments reveals that brain uses a single learning algorithm for perform different task like u can learn to see using ur auditory cortex or somatosensory cortex ( nuero-rewiring experiments ).
+
+
+Modal Representation
+
+-> Neurons are basically computational units that take inputs(dentrites) as electrical inputs (called "spikes") that are channeled to outputs (axons). In our model, our dentrites are like the input features x1,x2,...,xn, and the output is the result of our hypothesis function. In this model our x0 input node is sometimes called the "bias unit". It is always equal to 1. In neural networks, we use the same logistic function as in classification, sigmoid, yet we sometimes called it as "activation function". In this situation, our "theta" parameters are sometimes called "weights".
+
+-> We have "input layer" which contains all the input nodes, go into another node(layer 2), which finally outputs the hypothesis function, known as the "output layer". All the intermediate layers of nodes between input and output layers are known as "hidden layers".
+           ai(j) = "activation" of unit i in layer j
+           Θ(j) = matrix of weights controlling function mapping from layer j to layer j+1
+Each layer gets its own matrix of weights, Θ(j). If network has sj units in layer j and sj+1 units in layer j+1, then Θ(j) will be of dimension sj+1*(sj + 1).
+
+-> Introducing a new term -
+           z(j) = Θ(j-1)a(j-1), where a(j) = g(z(j))
+
+-> For multiclass classification we catogerise the output in a vector of dimension-k where k is the no. of classes.
+      i.e, y(i) = [1 0 0 0]', [0 1 0 0]', [0 0 1 0]'....so on

@@ -1,0 +1,116 @@
+Starting with octave
+
+-> We can implement the elementary operations in octave and logical too.
+-> We use ~ for not, && for and xor(a,b) for xor
+-> For changing the prompt we can use PS1('new_prompt');
+-> Semicolon at the end of a line supress the output
+-> We use disp() command for displaying the value of the variable
+-> sprintf('2 decimals: %0.2f',a) works similar to C Stdout functions
+-> format long and format short for showing large and small numbers respectivily
+-> v = 1:0.1:2  this creates a row matrix with values starting from 2 to 2 increamenting with 0.1
+-> We can ones(row, col) create a row*col matri with all 1
+-> similarly we have zeros(row, col) and rand(3, 3) - a matrix of random numbers between 0-1
+-> Guassian Random variables can be generated with randn(row, col) function
+-> hist(var) for creating the histogram for the var
+-> hist(var, w) for creating the histogram with width w
+-> eye(n) for creating Identity matrix of dimension n
+-> help eye - for getting help text material for eye
+
+
+Moving Data in Octave
+
+-> size(a) what is the size of the matrix returning a 1*2 matrix containing the dimension
+-> size(a, 1) and size(a,2) for knowing the rows and cols respectivily
+-> length(v) returns the larger dimension
+-> pwd - shows the current directory we are in 
+-> cd and ls commands as default in octave 
+-> load file_name or load('file_name') for the loading the file data in octave
+-> who command shows the variables in my memory
+-> whos command show description in addition about the variables
+-> clear command flush the variables data with variable
+-> save file_name.m var_name - for saving the content of var_name in the file file_name,m
+-> When we load back the data we get back the variable v in memory
+-> For loading the data in human readable format we type - save file_name.txt var_name -ascii
+-> A(3,2) - printing the respectivily value
+-> A(2, :) - printing every value of the particular row or colums
+-> We use % - for single line comment
+-> A([1,3],:) - for printing all the content of rows 1 and 3
+-> We can also them in assingment as A(3, :) = [1,2,3,4]
+-> A = [A, [new_cloumn definition]] - for appending the matrix
+-> A(:) - for appending the all the values in a single matrix 
+-> C = [A B] - for concatenating the two matrices together
+-> C = [A; B] - for concatenating but A is on the top of B
+
+
+
+Computational Operations on data
+
+-> A*C - for multiplying the two matrices
+-> A .* B - for element wise multiplication % . is used for element wise operations
+-> 1 ./ V - for element wise inverse of vector V
+-> log(V) , exp(V), abs(V), -V are the element wise operation
+-> V + ones(length(V), 1) - for element wise increamenting. Similar to V+1
+-> use ' - for transposing the matrix A
+-> max(A) and [val,ind] = max(A) returns max value(column wise) and its indices(column wise)
+-> A < 3 - does the element wise comparision and returns the matrix
+-> find( A < 3 ) - returns  indices of all the values greater than 3
+-> sum(A) - returns the sum
+-> prod(A), ceil(A), floor(A), rand(n), magic(n)
+-> max(rand(3), rand(3)) - returns the element wise max of the two rand() matrices
+-> max(A, [], 1) - returns the column wise max (default)
+-> max(A, [], 2) - returns the row wise max (default)
+-> max(max(A)) - for getting the max of entire matrix
+-> sum(A, 1) - performs column wise sum
+-> sum(A, 2) - performs row wise sum
+-> For diagonal wise sum - sum(sum(A.eye(length(A))))
+-> flipud(eye(9)) - flip the matrix upside down
+-> pinv(A) - returns the inverse of matrix
+
+
+Visualising the data
+
+-> plot(x, y) - for plotting function
+-> hold on; - holds the GUI and plot() the next graph on the top of previous graph
+-> plot(t, y, 'r') - the r indicates the what is an event color
+-> xlabel('label'), ylabel(''), legend('sin','cos') title('my plot') 
+-> print -dpng 'myPlot.png' - for saving it as a png file
+-> close command closes the window
+-> figure(1); plot() - similarly u can different names to the plots for accessing them later
+-> subplot(1,2,1); % Divides the plot a 1x2 grid, access first element
+-> now plotting the graph will result in impact subplot() 
+-> axis([0.5 1 -1 1]) - for defining the axis
+-> clf; - for clearing the plot
+-> imagesc(A), colorbar, colormap, gray;
+-> Comma chaining help us to write multiple commands in one line in octave
+
+
+Control Statements in Octave
+
+-> for i=1:10,
+	v(i) = 2^i
+   end;
+-> Similarly u can use indices=1:10 in loop statement
+-> while i <=5,
+      v(i) = 100;
+      i = i+1
+   end;
+-> while true,
+      v(i) = 999;
+      i = i+1;
+      if i == 6:
+          break;
+      end;
+   end;
+-> if v(1) == 1,
+       disp('The value is one');
+   elseif v(2) == 2,
+       disp('The value is two');
+   else
+       disp('The value is neither one or two')
+   end;
+-> For creating a function we name the file as the function_name.m and then defined it as
+        function y = squareThisNumber(x)
+            y = x^2;
+            end;
+   Thia function takes an argument x and the value y.Before calling the function, ensure that you are in the same directory. For permanently adding the path in search path of the octave use addpath('path_name')
+-> 
