@@ -1,0 +1,22 @@
+Cost function 
+
+-> It is same as before with only difference is of handling the K-dimension output for K-class classification, i.e. instead of just summing up the cost of m-training examples we add K-classes cost of each training example.
+-> While regularising we regularise each parameter of Θ martix of each layer, except the bais term as before.
+
+
+Backpropagation Algorithm
+
+-> "Backpropagation algorithm" is neural-network terminology for minimizing our cost function, just like what we were doing with gradient descent in linear or logistic regression.
+-> For applying gradient descent to minimize cost function we need to calculate J(Θ) and partial derivative of J(Θ) w.r.t each parameter of Θ of each layer. We use Bp for calculating the partial derivative.
+-> Using Forward propagation, we calculate the activation units of various layers. See resources for implementation of backpropagation.
+-> To pass the gradient to our in-built fminunc function we unroll our parameter matrix Θ, i.e. merge the different layers into one. Similarly, we unroll the partial derivative matrices.
+-> We find out the numerical estimation of gradient for checking the correctness of our implementation of gradient. Since numerical estimation is costlier, we check it only upto we are satisfied with the implementation after that we turn it off.
+-> We randomly assign the initial parameter of Θ for symmetry breaking.
+
+-> Steps to follow while training a neural network :
+   1. Randomly initialize weights.
+   2. Implement forward propagation to get h(x)
+   3. Implement code to compute the cost function J(Θ)
+   4. Implement backprop to compute partial derivative
+   5. Use gradient checking to compare partial derivative computer using backprop vs. using numerical estimate of gradient of J(Θ). Then disable gradient checking code.
+   6. Use gradient descent or advance optimization method with backprop to try to minimize J(Θ) as a function of parameters Θ.
