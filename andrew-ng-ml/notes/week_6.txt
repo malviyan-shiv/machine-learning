@@ -1,0 +1,41 @@
+Debugging a learning algorithm
+
+-> If our regularised linear regression to predict housing prices gives unacceotably large errors in its predictions, we can start diagnostic of our regression( a process that we can run to gain insight what is/isn't working with a learning algorithm, and gain guidance as to how best to improve its performance ).
+-> Possible options we can opt for:
+   1. Get more training examples
+   2. Try smaller sets of features
+   3. Try getting additional features
+   4. Try adding polynomial features
+   5. Try decreasing lambda
+   6. Try increasing lambda
+-> For evaluating the general error rate of our hypothesis we divide our training data set into two parts training and testing set with approx. ratio of 7:3 and use this testing set for generalisation.
+-> For finding the appropriate model for our regression we divide the data into three parts training, cross validation and test sets with approx. ratio of 3:1:1. We then calculate Θ for each model using training set, then use the cross-validation set to find the appropriate model(i.e. with min(J(Θ)cross-validation)) and then use test set to find the generalised error rate.
+
+
+Diagnosing bias vs. variance
+
+High bias - underfit		High Variance - overfit
+
+-> For finding whether our algorithm is suffering from overfitting or underfitting we calculate training and cross-validation set cost and draws using the following conclusion
+    - For Underfitting
+       train cost will be high
+       cross-validation cost will be nearly equal to training set cost
+    - For Overfitting
+       train cost will be low
+       cross-validation cost will be >> training set cost
+
+-> If we are using large regularisation term, we are prone to underfitting. Similarly if are using very small regularised term we are prone to overfitting. Hence to solve the problem of choosing the appropriate regularised parameter, we minimise the parameters of Θ with range of values of lambda and again choose the equation with min(J(Θ)cross-validation set). 
+
+
+-> To exactly figure out the type of treatment we combine the knowledge gained above and plot the learning curves with error on y-axis and m on x-axis. If we got the high error rates for training and cv set means underfitting and getting more training data wouldn't help much. If we large gap between training set error and cv set error means overfitting and getting more data will help.
+-> As we can find out whether our algorithm is suffering from underfitting or overfitting by ploting the various graph, we can summarise the effect of various steps as:
+   1. Get more training examples			- fixes high variance
+   2. Try smaller sets of features			- fixes high variance
+   3. Try getting additional features		- fixes high bias
+   4. Try adding polynomial features		- fixes high bias
+   5. Try decreasing lambda					- fixes high bias
+   6. Try increasing lambda					- fixes high variance
+
+-> Generally in case of neural networks, using large neural networks with appropriate value of regularisation parameter to address overfitting is a good and safe step.
+
+
