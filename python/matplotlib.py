@@ -20,3 +20,63 @@ Tutorial 2
   plt.title('Interesting Graph\nCheck it out')
   plt.legend()       #invoking the default legend
   plt.show()
+
+Tutorial 3  Bar Charts and Histograms
+> import matplotlib.pyplot as plt
+  plt.bar([1, 3, 5, 7, 9], [5,2,7,8,3], label='Example One')
+  plt.bar([2, 4, 6, 8, 10], [4,7.2.5.9], label="Example Two", color='g')
+  plt.legend()
+  plt.xlabel('bar number')
+  plt.ylabel('bar height')
+  plt.show()
+
+> import matplotlib.pyplot as plt
+  population_ages = [22,55,62,45,21,22,34,42,42,4,99,102,110,120,121,122,130,111,115,112,80,75,65,54,44,43,42,48]
+  bins = [0,10,20,30,40,50,60,70,80,90,100]
+  plt.hist(population_ages, bins, histtype='bar', rwidth=0.8)
+  plt.xlabel('X')
+  plt.ylabel('Y')
+  plt.title('Interesting Graph')
+  plt.legend()
+  plt.show()
+
+Tutorial 4         Scatter Plots
+> import matplotlib.pyplot as plt
+  import random
+  x = [ random.randint(0, 10) for _ in range(0, 20)]
+  y = [ random.randint(0, 10) for _ in range(0, 20)]
+  plt.scatter(x, y, label='skitcat', color='k', s=25, marker='o')
+  plt.xlabel('X-axis')
+  plt.ylabel('Y-axis')
+  plt.legend()
+  plt.title("Graph")
+  plt.show()
+
+Tutorial 5          Stack Plot ( still anonymous )
+The main idea of stack plot is to show 'parts to the whole' over time.
+> import matplotlib.pyplot as plt
+  day = [1,2,3,4,5]
+  sleeping = [7,8,6,11,7]
+  eating =   [2,3,4,3,2]
+  working =  [7,8,7,2,2]
+  playing =  [8,5,7,8,13]
+  plt.stackplot(days, sleeping, eating, working, playing)
+  plt.xlabel('x')
+  plt.ylabel('y')
+  plt.title("Stack Plot Example")
+  plt.show()
+
+Tutorial 6       Pie Charts
+> import matplotlib.pyplot as plt
+  slices = [7, 2, 2, 13]
+  act = ['sleeping', 'eating', 'working', 'playing']
+  col = ['c', 'm', 'r', 'b']
+  plt.pie(slices,
+          labels=act,
+          colors=col,
+          startangle=90,
+          shadow=True,
+          explode=(0, 0, 0.1, 0)
+          autopct='%1.1f%%')
+  plt.title('Pie Chart Example')
+  plt.show()
