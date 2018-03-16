@@ -80,3 +80,28 @@ Tutorial 6       Pie Charts
           autopct='%1.1f%%')
   plt.title('Pie Chart Example')
   plt.show()
+
+Tutorial 7        Loading data from file
+    We can either use csv module of numpy
+> import matplotlib.pyplot as plt
+  import csv
+  x = []
+  y = []
+  with open('csv_file', 'r') as csvfile:
+    plots = csv.reader(csvfile,delimiter=',')
+    for rows in plots:
+        x.append(int(rows[0]))
+        y.append(int(rows[1]))
+  plt.plot(x, y, label="Loaded data from file")
+  plt.legend()
+  plt.show()
+
+    Using numpy module
+> import matplotlib.pyplot as plt
+  import numpy as np
+  x, y = np.loadtxt('file_name', delimiter=',', unpack=True)
+  plt.plot(x, y, label='Loaded data from file')
+  plt.legend()
+  plt.show()
+    
+Tutorial 8          
