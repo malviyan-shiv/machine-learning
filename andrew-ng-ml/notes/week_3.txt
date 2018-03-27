@@ -55,4 +55,4 @@ Solving the problem of Overfitting
           The above can be written as :
           thetaj:=thetaj(1-a*(lambda/m)) - a/m(summation(h(x)-y)x)
    Equation in the normal form:
-          theta = (X'X+lambda.L)^(-1)y where L is a identity matrix with 0,0 as 0
+          theta = ((X'X+lambda.L)^(-1))y where L is a identity matrix with 0,0 as 0

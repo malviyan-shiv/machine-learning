@@ -1,0 +1,53 @@
+-> numpy dimensions are called axes. The number of axes is rank.
+-> Numpy's array class is called ndarray. The more important attributes of an ndarray objects are:
+	ndarray.ndim - the number of axes of the array
+	ndarray.shape  - tuple of integers indicating the size of the array in each dimension
+	ndarray.size - the total number of elements of the array (equal to product of elements of shape)
+	ndarray.dtype - an object describing the type of the elements in the array
+	ndarray.itemsize - the size in bytes of each element of the array
+	ndarray.data - the buffer containing the actual elements of the array
+
+-> np.array() - takes list, dtype=()
+-> np.zeros() - initialises content with float64 0
+-> np.ones() - initialises content with float64 1
+-> np.empty() - uninitialised array ( garbage value )
+-> np.arange() - analogous to range
+-> np.linspace() - receives the number of elements that we want, instead of the step
+-> np.array().reshape() - change the dimension of the array ( function return a new created array )
+-> np.array().resize() - change the dimension of the array ( but inplace )
+-> np.fromfunction(f, (5, 4), dtype=int)
+-> np.diag(np.array(]1, 1, 1])) is equivalent to np.eye(3)
+
+
+Printing Arrays - 
+	- the last axis is printed from left to right
+	- the second-to-last is printed from top to bottom
+	- the rest are also printed from top to bottom, with each slice seperated from the next by an empty line.
+
+- np.set_printoptions(threashold='nan')   #default is 1000 i.e. the count after which ... are printed 
+
+-> Arithmetic operators on arrays apply elementwise. A new array is created and filled with the result.
+-> For matrix multiplication we use dot function
+-> We have sum, min, max function in which we can pass axis=0 or 1 to change the direction of their implementation.
+-> Numpy provides familier mathematical functions such as sin, cos and exp. These are called as universal functions.
+
+Indexing, Slicing and Iterating
+-> Can be indexed, sliced and iterated much like list and other python sequence.
+-> Allows triple dot notation i.e it fills appropriate number : required for iteration
+-> array.flat - can be used iterating array element-wise as it return a single dimension list of array
+
+
+Shape Manipulation
+-> array.ravel()     #returns the array, flattened
+-> a.T   	#returns the array, transposed
+-> a.reshape() and a.resize()  as stated above
+-> If a dimension is given as -1 in a reshaping operation, the other dimensions are automatically calculated.
+
+
+Stacking Different Arrays Together
+-> np.hstack((a, b))
+-> np.vstack((a, b))
+-> np.column_stack()  -   ?
+
+-> np.hsplit() and np.vsplit()    ?
+

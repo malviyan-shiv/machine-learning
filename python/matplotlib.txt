@@ -104,4 +104,5 @@ Tutorial 7        Loading data from file
   plt.legend()
   plt.show()
     
-Tutorial 8          
+Tutorial 8  Getting data from Internet
+>         
