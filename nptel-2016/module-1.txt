@@ -1,0 +1,147 @@
+What is machine learning ?
+	- A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P if its performance on tasks in T as measured by P improves with experience E.
+
+Steps for creating a learner -
+	1. Choose the training experience ( features )
+	2. Choose the target function ( that is to be learned )
+	3. Choose how to represent the target function ( hypothesis language )
+	4. Choose a learning algorithm to infer the target function 
+
+Some terminology
+	-> Features - The number of features or distinct traits that can be used to describe each item in a quantative manner.
+	-> Feature Vector - n-dimensional vector of numerical features that represent some object
+	-> Instance Space X - Set of all possible objects describable by features.
+	-> Example(x, y) - Instance x with label y = f(x)
+	-> Concept c - Subset of object from X (c is unknow)
+	-> Target Function f - Maps each instance x belongs to X to target label y belongs to Y
+	-> Training Data S - Collection of examples observed by learning algorithm. Used to discover potentially predictive relationships
+	-> Feature Space - Feature space refers to the n-dimensions where your variables live (not including a target variable, if it is present). The term is used often in ML literature because a task in ML is feature extraction, hence we view all variables as features
+	-> Hypothesis - refers to the function used for labeling examples
+	-> Hypothesis Space - Set of legal hypothesis( in ML we first define the hypothesis space then given the data points we try to come up with the best hypothesis)
+
+Hypothesis Space - 
+	We define hypothesis space based on features and language(function class) of a function.
+
+Hypothesis language -
+	Reflects an inductive bias of the learner
+
+-> The set of hypotheses that can be produced can be restricted further by specifying a language bias.
+-> Experience alone doesn't allow us to make conclusions about unseen data instances, we need to make assumptions. These errenous assumption is called bias. They can be
+	i) Restriction Bias: limiting the hypothesis bias.
+	ii) Preference Bias: impose ordering on hypothesis space.
+
+Inductive learning -
+	A general function from training examples
+	- construct a hypothesis h to agree with concept c on the training examples
+	- a hypothesis h is consistent if it agree with all training examples
+	- a hypothesis h is said to generalise well if it correctly predicts the value of y for novel example
+
+-> Inductive learning is an ill posed problem because unless we see all example it is not possible to build unique solution.
+-> Concept learning is a task of searching an hypothesis space looking for representation that best fits the data, given the bias.
+-> The tendency to prefer one over the other is called bias. Given a representation, data and bias, the problem of learning can be reduced to one of search.
+
+-> Components of generalization erro - 
+	- Bias : how much the average model over all training sets differ from the true model?
+		Error due to inaccurate assumptions/simplifications made by the model
+	- Variance : how much models estimated from different training set differ from each other
+
+-> Underfitting and Overfitting -
+	- Underfitting : model is too "simple" to represent all the revelent class characteristics
+		-- high bias and low variance
+		-- high training error and high test error
+	- Overfitting : model is too "complex" and fits irrelevant characteristics (noise) in the data
+		-- low bais and high variance
+		-- low training error and high test error
+
+Experimental evaluation and validation
+-> Experimental evaluation - we measure error, accuracy and precision.
+	- Absolute error, sum of square error, number of misclassification(for classification)
+	- Accuracy = (no. of correct predictions)/(total no. of predictions)
+	- Precision = (no. of correct positive prediction)/(total no. of positive prediction)
+	- Recall = (no. of correct positive prediction)/(no. of correct prediction)
+-> Sample error and True error -
+	- sample error : error of hypothesis f with respect to target function c and data sample S
+				error(f) = 	1/n * summation of del(f(x), c(x))
+	- true error : error of hypothesis f with respect to target function c and distribution D, is the probability that h will misclassify an instance drawn at random according to D.
+
+-> There are various sources of error, 
+	- it can come due to limitation in representation function or hypothesis space(bais),
+	- given the hypothesis space the search algorithm doesn't exhausitively search the space but make certain simplification (searching bais),
+	- can be due to the limited size of the sample set (variance error),
+	- the feature we are using is not sufficient to capture everything about the task. 
+-> k-fold cross-validation is used to train the algorithm well when we have small set of trainin examples as it have small variance.
+-> Training set, test set and cross-validation set
+-> Trade-off between variance and bais.
+
+DECISION TREES
+-> A tree-structured classifier having decision nodes and leaf nodes. More probably used for classification but can also be used for regression.
+-> Since many Decision Tree are possible we impose preference bias on trees with low depth and less no. of nodes. 
+-> While constructing Decision Trees we need to make 2 decisions
+	i) Should we stop
+	ii) If continue which attribute should we select for making decision
+-> Decision Trees represent disjunctions of conjuctions.
+-> Top Down induction of Decision Trees ID3 -
+	1. A <- the "best" decision attribute for next node.
+	2. Assign A as decision attribute for node.
+	3. For each value of A create new descendant
+	4. Sort training examples to leaf node according to the attribute value of the branch.
+	5. If all training examples are perfectly classified stop, else iterate over new leaf nodes.
+-> When to Stop - we can stop if all the examples are either +ve or -ve or we can stop if majority of examples belongs to one class giving the percentage as accuracy.
+-> How to choose attribute :
+	PRINCIPAL CRITERION
+	- Selection of an attribute to test at each node - choosing the most useful attribute for classifying examples.
+	- Information gain : measures how well a given attribute seperates the training examples according to their target classification.
+	- this measures is used to select among the candidate attribute at each step while growing the tree
+	- Gain is measure of how much we can reduce uncertainity ( value lies between 0 and 1 )
+	ENTROPY
+	-> A measure for uncertainity, purity and information content.
+	- Information Theory : optimal length code assigns (-log p) bits to message having probability p.
+	- S is a sample of training examples, entropy of S : average optimal number of bits to encode information about certainity/uncertainity about S.
+			Entropy(S) = p+(-log(p+)) + p-(-log(p-))
+	- Entropy is 0 is system is certain and max if system is completely unknown to us.
+	GAIN(S,A)
+	- expected reduction in entropy due to partitioning S on attribute.
+		Gain(S, A) = Entropy(S) - Sum((|Sv|/|S|)*Entropy(Sv)) for all v in values set of attribute A
+-> Splitting on the continuous attribute we find all the possible points of split and compare the information gain at each point to choose the best.
+
+-> A hypothesis h is said to overfit the training data if there is another hypothesis h' such that h' has more error on training data and less error on test data compared to h.
+-> A learning tree that classifies the data perfectly may not to the tree with best generalisation performance bcz there may be noise or may be due to insufficient data.
+-> Overfitting result in decision trees that are more complex that necessary and no longer provides good estimate of generalization performance.
+-> Avoiding Overfitting : 
+	1. Prepuring - stop growing when data split not statistically significant
+	2. Postpruning - grow full tree then remove nodes.
+-> ??? Methods for evaluating subtree to prune :
+	- Minimum Descriptive Length
+	- Cross-Validation
+
+-> Triple trade-off : there is a trade off between three factors
+	1. Complexity of hypothesis h
+	2. Training set size N
+	3. Generalization error E
+	- As N increases, E decreases
+	- As c(h) increases, first E decreases then increases
+	- As c(h) increases, the training error decreases for some time and then stays contant
+-> We can also overcome overfitting in linear regression using regularisation i.e. penalizing large weights in Linear Regression - 
+	1. L2 regularisation - E(w) = 1/2 Sum(y - y') + lamda*||w||**2/2
+	2. L1 regularisation - the additional term changes to lamda*||w||
+
+
+K NEAREST NEIGHBOR ALGORITHM
+-> Instance based learning (Lazy algorithm) - they only store the training data in the training phase 
+-> Voronoi diagram : representation of decision boundary 
+-> 3 issues -
+	1. Weighting examples from the neighborhood
+	2. Measuring "closeness"
+	3. Finding "close" examples in large set quickly
+-> We use k greater than 1 under some circumstances
+	1. noise in attribute
+	2. noise in class labels
+	3. classes partially overlaps
+-> We give equal weigths to all attributes only when
+	- scale of the attributes are similar and the difference 
+	- scale attributes to equal range and equal variance
+	-??? classes are spherical in shape
+-> To overcome above problems we can use large k and weighted distance function.
+	-small k : capture fine structure of the shape and may be necessary for small training set
+	-large k : less sensitive to noise, better probability estimates for discrete classes and large training set allows use of large k
+->
