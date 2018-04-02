@@ -144,4 +144,43 @@ K NEAREST NEIGHBOR ALGORITHM
 -> To overcome above problems we can use large k and weighted distance function.
 	-small k : capture fine structure of the shape and may be necessary for small training set
 	-large k : less sensitive to noise, better probability estimates for discrete classes and large training set allows use of large k
-->
+-> Curse of Dimensionality : irrelevent features and redundant features cost the training algorithm performance.
+-> Methods of feature reduction
+	1. Feature Selection } either improves or maintains accuracy
+	2. Feature Extraction } simplify classification complexity
+-> Feature selection : Since no. of possible subsets (2**d) is very large hence we need some methods : optimistic, heuristic or randomised to select a subset. For evaluating these subsets we can either use :
+	i) Unsupervised( Filter ) : look at features only
+	ii) Supervised( Wrapper ) : Calculate cost
+-> Select uncorrelated features and remove redundant feature
+	1. Forward Selection :
+		- Starts with empty feature set.
+		- Try each remaining feature
+		- Estimate accuracy for adding each feature
+		- Select feature giving maxium improvement
+		- Stop when there is no significant improvement
+	2. Backward Search :
+		- Starts with full feature set.
+		- remove feature with least impact on error and continue the process
+-> Univariant feature selection looks at each feature independently
+	- Pearson Correlation Coefficient 
+	- F-score
+	- Chi-Square
+	- Signal to Noise ratio
+	- Mutual Information ...
+	In most of the above we rank feature as per importance and then decide the cut-off.
+-> Multivarient feature selection consider all feature simultaneously.
+	- one way is that the small entries of W in W'X+w0, those features contribute less and are less relevant. The W can be obtained by any of linear classifiers. A varient of above approach is called Recursive Feature Elimination.
+-> Feature Extraction : objective is to find a projection matrix W such that z = W'X where features of z are uncorrelated, cannot be reduced further and large variance.
+-> Given a set of features F = { x1, x2, x3, ..., xn } the feature Extraction ("contruction") problem is to map F to some feature set F' that maximises the learner's ability to classify patterns.
+PRINCIPAL COMPONENTS
+-> Given a sample of p observations on a vector of N variables { x1, x2, x3, ..., xp } R-N define the first principal component of the sample by the linear transformation 
+	Z = W'Xj = sum(WiXij), j = 1,2,...,p
+	where the vector W1 = ( W1, W2, ..., Wn)
+					Xj = (X1j, X2j, ... )
+	is chosen such that var[Z] is maximum.
+-> 	Between-class distance :
+		- Distance between the centroids of different classes within-class distance
+	Within-class distance
+		- Accumulated distance of an instance to the centroid of its class
+	Linear Discriminant Analysis (LDA) 
+		- finds most discriminant projection by maximizing between class distance and minimizing within class distance.
